@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: OrderStatisticBackend
+  namespace: OrderStatisticBackend-stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: OrderStatisticBackend
+      version: 'v1'
+  template:
+    metadata:
+      labels:
+        app: OrderStatisticBackend
+        version: 'v1'
+    spec:
+      containers:
+        - name: OrderStatisticBackend
+          image: harbor.technodom.kz//OrderStatisticBackend:r<VERSION>
+          envFrom:
+            - configMapRef:
+                name: OrderStatisticBackend-configmap-env
+          resources:
+            requests:
+              memory: '512Mi'
+              cpu: '0.5'
+            limits:
+              memory: '512Mi'
+              cpu: '0.5'
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8984
+          volumeMounts:
+            - name: tz-config
+              mountPath: /etc/timezone
+            - name: lt-config
+              mountPath: /etc/localtime
+      imagePullSecrets:
+        - name: harbor-pull-secret
+      restartPolicy: Always
+      volumes:
+        - name: tz-config
+          hostPath:
+            path: /etc/timezone
+        - name: lt-config
+          hostPath:
+            path: /etc/localtime
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: OrderStatisticBackend
+  namespace: OrderStatisticBackend-prod
+spec:
+  selector:
+    app: OrderStatisticBackend
+  type: NodePort
+  ports:
+    - name: http
+      port: 8984
+      nodePort: 32331
