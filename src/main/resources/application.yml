@@ -1,0 +1,28 @@
+  server:
+    port: 8082
+
+  spring:
+    jpa:
+      hibernate:
+        ddl-auto: update
+    datasource:
+      url: jdbc:mysql://localhost:3307/test
+      password: root
+      username: root
+
+  jwt:
+      secret: samdheHRlELXqpSBsamdheHRlELXqpSB
+      expirationDateInMs: 600000
+      refreshExpirationDateInMs: 1800000
+
+  authenticationdb:
+      username: m_tech
+      password: qwerty123
+      url: https://dev-log.technodom.kz/api/authenticate
+
+  technodomapi:
+      completedurl: https://dev-log.technodom.kz/ordermanagement/api/orders/full/COMPLETED/currentInstant?&full=false&companyId=1&city=1111&sort.sorted=true&size=1000&page=
+      outfordeliveryurl: https://dev-log.technodom.kz/ordermanagement/api/orders/full/OUTFORDELIVERY/currentInstant?&full=false&companyId=1&city=1111&sort.sorted=true&size=1000&page=
+      newurl: https://dev-log.technodom.kz/ordermanagement/api/orders/full/NEW/currentInstant?&full=false&companyId=1&city=1111&sort.sorted=true&size=1000&page=
+      delayedurl: https://dev-log.technodom.kz/ordermanagement/api/orders/full/DELAYED/currentInstant?&full=false&companyId=1&city=1111&sort.sorted=true&size=1000&page=
+      cancelledurl: https://dev-log.technodom.kz/ordermanagement/api/orders/full/CANCELLED/currentInstant?&full=false&companyId=1&city=1111&sort.sorted=true&size=1000&page=
