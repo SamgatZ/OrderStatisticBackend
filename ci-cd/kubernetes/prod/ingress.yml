@@ -1,0 +1,29 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name:
+  namespace: OrderStatisticBackend-prod
+spec:
+  gateways:
+    - main-gateway.istio-system.svc.cluster.local
+  hosts:
+    - tickets-stage.technodom.kz
+  http:
+    - name: "api"
+      match:
+        - uri:
+            regex: /api(.*)
+      route:
+        - destination:
+            host: tickets-back
+            port:
+              number: 8080
+    - name: "main"
+      match:
+        - uri:
+            regex: /(.*)
+      route:
+        - destination:
+            host: tickets-front
+            port:
+              number: 80
