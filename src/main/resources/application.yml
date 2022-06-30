@@ -6,9 +6,9 @@
       hibernate:
         ddl-auto: update
     datasource:
-      url: ${SPRING_DATASOURCE_URL}
-      password: ${SPRING_DATASOURCE_USERNAME}
-      username: ${SPRING_DATASOURCE_PASSWORD}
+      url: jdbc:mysql://vm-dbn01.technodom.kz:3306/DeliveryBot?useUnicode=true&characterEncoding=utf8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      password: g7nkn_SWwid
+      username: root
 
   jwt:
       secret: samdheHRlELXqpSBsamdheHRlELXqpSB
